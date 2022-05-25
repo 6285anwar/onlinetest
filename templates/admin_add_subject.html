@@ -1,0 +1,52 @@
+{%extends 'admin_index.html'%}
+{%load static%}
+{%block content%}
+
+
+<h2 class="text-white"> Subject</h2>
+
+
+<div class="ps-4"><a href="{% url 'admin_sub_add'%}">
+        <button class="btn bg-gradient-info btn-icon-only mb-0 mt-3" data-toggle="modal" data-target="#new-board-modal">
+            <i class="fa fa-plus"></i>
+        </button></a>
+</div>
+
+
+<br>
+<div class="row ">
+
+    {% for i in sub %}
+    <div class="card  mb-3  col-md-5 bg-gradient-faded-success-vertical " style="margin-left:10px;">
+        <div class="card-header  text-center pt-4 pb-3 bg-gradient-faded-success-vertical">
+            <h3 class="font-weight-bold mt-2">
+                {{i.subjectname}}
+            </h3>
+        </div>
+        <div class="card-body text-lg-left text-center pt-0">
+    
+    <h5>{{i.subjectdescription}}</h5>
+            <a href="{% url 'admin_add_exam' i.id %}" class="btn btn-icon bg-gradient-primary  mt-3 mb-0">
+                Add Exam
+                <i class="fas fa-file ms-1" aria-hidden="true"></i>
+            </a>
+            
+            <a href="{% url 'admin_deletesub' i.id %}" class="btn btn-icon bg-gradient-danger  mt-3 mb-0">
+                Delete
+                <i class="fas fa-trash ms-1" aria-hidden="true"></i>
+            </a>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

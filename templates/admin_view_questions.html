@@ -1,0 +1,56 @@
+{%extends 'admin_index.html'%}
+{%load static%}
+{%block content%}
+
+
+<h2 class="text-white"> Quistions </h2>
+
+<br>
+<div class="row ">
+
+    {% for i in q %}
+    <div class="card  mb-3  col-md-11 bg-gradient-faded-info-vertical " style="margin-left:10px;">
+
+        <div class="card-body text-lg-left  pt-0">
+            <h5 class="font-weight-bold mt-2">
+                Question {{forloop.counter}} : {{i.question}}?
+            </h5>
+            <h5>Options :</h5>
+            <ul>
+                <li>
+                    <h6>{{i.option1}}</h6>
+                </li>
+                <li>
+                    <h6>{{i.option2}}</h6>
+                </li>
+                <li>
+                    <h6>{{i.option3}}</h6>
+                </li>
+                <li>
+                    <h6>{{i.option4}}</h6>
+                </li>
+            </ul>
+
+            <h5>Answer : {{i.answer}}</h5>
+
+
+            <a href="{% url 'admin_question_delete' i.id %}" class="btn btn-icon bg-gradient-danger  mt-3 mb-0">
+                Delete
+                <i class="fas fa-trash ms-1" aria-hidden="true"></i>
+            </a>
+
+        </div>
+    </div>
+    {% endfor %}
+</div>
+
+
+
+
+
+
+
+
+
+
+{% endblock %}

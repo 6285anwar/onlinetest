@@ -1,0 +1,121 @@
+{%extends 'user_index.html'%}
+{%load static%}
+{%block content%}
+
+
+
+<div class="col-12 col-md-12 col-xl-12 mt-md-0 mt-4">
+    <div class="card h-100">
+        <div class="card-header pb-0 p-3">
+            <div class="row">
+                <div class="col-md-8 d-flex align-items-center">
+                    <h5 class="mb-0">INSTRUCTIONS FOR ONLINE EXAM </h5>
+                </div>
+            </div>
+        </div>
+        <div class="card-body p-3">
+            <ul>
+                <li>
+                    <h6>The student may not use his or her textbook, course notes, or receive help from a proctor or any
+                        other outside source.</h6>
+                </li>
+                <li>
+                    <h6>Students must complete the 25-question multiple-choice exam within the 10-minute time frame
+                        allotted for the exam.</h6>
+                </li>
+                <li>
+                    <h6>Students must not stop the session and then return to it. </h6>
+                </li>
+                <li>
+                    <h6>This is especially important in the online environment where the system will "time-out" and not
+                        allow the student or you to reenter the exam site.</h6>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="col-lg-12 ">
+<h4>Time Remining</h4>
+<h1>00:00</h1>
+     
+    
+    <div class="card card-body mt-4">
+        
+       
+        <hr class="horizontal dark my-3">
+        <form method="post" action="" enctype="multipart/form-data">
+            
+            {% for i in q %}
+            {% csrf_token %}
+            <h6 class="mb-0">{{i.question}}</h6>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" value="{{i.option1}}" name="{{i.question}}">
+                <label class="form-check-label" for="flexCheckDefault">
+                    {{i.option1}}
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" value="{{i.option2}}" name="{{i.question}}">
+                <label class="form-check-label" for="flexCheckDefault">
+                    {{i.option2}}
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" value="{{i.option3}}" name="{{i.question}}">
+                <label class="form-check-label" for="flexCheckDefault">
+                    {{i.option3}}
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" value="{{i.option4}}" name="{{i.question}}">
+                <label class="form-check-label" for="flexCheckDefault">
+                    {{i.option4}}
+                </label>
+            </div>
+            <br>
+            {% endfor %}
+            <button type="submit" name="button" class="btn bg-gradient-primary m-0 ms-2">Submit</button>
+    </div>
+    </form>
+    
+</div>
+</div>
+
+
+
+<script>
+setTimeout(function() {
+  window.location.href = "{% url 'user_subject' %}";
+}, 1501000);
+</script>
+
+<script>
+     let timeSecond = 1500;  
+ const timeH = document.querySelector("h1");  
+ displayTime(timeSecond);  
+ const countDown = setInterval(() => {  
+  timeSecond--;  
+  displayTime(timeSecond);  
+  if (timeSecond == 0 || timeSecond < 1) {  
+   endCount();  
+   clearInterval(countDown);  
+  }  
+ }, 1000);  
+ function displayTime(second) {  
+  const min = Math.floor(second / 60);  
+  const sec = Math.floor(second % 60);  
+  timeH.innerHTML = `  
+  ${min < 10 ? "0" : ""}${min}:${sec < 10 ? "0" : ""}${sec}  
+  `;  
+ }  
+ function endCount() {  
+  timeH.innerHTML = "Time out";  
+ } 
+</script>
+
+
+
+
+
+{% endblock %}
